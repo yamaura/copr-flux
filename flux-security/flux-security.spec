@@ -1,6 +1,6 @@
 Name:    flux-security
 Version: 0.14.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 Summary: Flux Resource Manager Framework
 License: LGPLv3
@@ -20,6 +20,7 @@ BuildRequires:  libtool
 BuildRequires:  pkgconfig
 BuildRequires:  m4
 BuildRequires:  gettext-devel
+BuildRequires:  pam-devel
 
 BuildRequires: pkgconfig(libsodium) >= 1.0.14
 BuildRequires: pkgconfig(jansson) >= 2.6
@@ -48,6 +49,7 @@ CFLAGS="${KOJI_CFLAGS}"
 export CFLAGS
 
 %configure \
+       --enable-pam \
        --disable-static || (cat config.log && exit 1)
 
 %install
@@ -95,6 +97,9 @@ rm -rf $RPM_BUILD_ROOT
 %config %{_sysconfdir}/flux/security/conf.d/sign.toml
 
 %changelog
+* Sat Jul 19 2025 Yuki Yamaura <ymruki@gmail.com> 0.14.0-2
+- --enable-pam is now default
+
 * Thu Jul 17 2025 Yuki Yamaura <ymruki@gmail.com> 0.14.0-1
 - Update to flux-security v0.14.0
 
