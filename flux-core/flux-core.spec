@@ -1,6 +1,6 @@
 Name:           flux-core
 Version:        0.76.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary: Flux Resource Manager Framework
 License:        LGPL-3.0-or-later
 Group: System Environment/Base
@@ -44,6 +44,7 @@ BuildRequires: ncurses-devel
 BuildRequires: libarchive-devel
 # for _tmpfilesdir
 BuildRequires: systemd-rpm-macros
+BuildRequires: systemd-devel
 
 # for chrpath
 BuildRequires: chrpath
@@ -243,5 +244,8 @@ timeout 5m make -k check || :
 #{python3_sitelib}/flux/*
 
 %changelog
+* Sat Jul 19 2025 Yuki Yamaura <ymruki@gmail.com> – 0.73.0-2
+- Add systemd
+
 * Mon Jul 14 2025 Yuki Yamaura <ymruki@gmail.com> – 0.73.0-1
 - Initial RPM package for Flux-core
